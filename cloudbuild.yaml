@@ -4,13 +4,13 @@ steps:
   args: 
     - '-c'
     - |-  
-      sed -i 's/<SQL_USERNAME>/${_SQL_USERNAME}/g' app.yaml &&
-      sed -i 's/<SQL_PASSWORD>/${_SQL_PASSWORD}/g' app.yaml &&
-      sed -i 's/<SQL_PORT>/${_SQL_PORT}/g' app.yaml &&
-      sed -i 's/<CLOUD_SQL_INSTANCES>/${_CLOUD_SQL_INSTANCES}/g' app.yaml &&
-      sed -i 's/<DJANGO_SECRET_KEY>/${_DJANGO_SECRET_KEY}/g' app.yaml &&
-      sed -i 's/<GCS_STATIC_STORAGE>/${_GCS_STATIC_STORAGE}/g' app.yaml &&
-      sed -i 's/<SQL_PASSWORDE>/${_SQL_PASSWORD}/g' app.yaml &&
-      sed -i 's/<USPS_USER_ID>/${_USPS_USER_ID}/g' app.yaml &&
-      sed -i 's/<SQL_UNIX_HOSTNAME>/${_SQL_UNIX_HOSTNAME}/g' app.yaml &&
-      gcloud app deploy
+      "sed -i 's/<SQL_USERNAME>/${_SQL_USERNAME}/g' app.yaml" &&
+      "sed -i 's/<SQL_PASSWORD>/${_SQL_PASSWORD}/g' app.yaml" &&
+      "sed -i 's/<SQL_PORT>/${_SQL_PORT}/g' app.yaml" &&
+      "sed -i 's/<CLOUD_SQL_INSTANCES>/${_CLOUD_SQL_INSTANCES}/g'" app.yaml &&
+      "sed -i 's/<DJANGO_SECRET_KEY>/${_DJANGO_SECRET_KEY}/g' app.yaml" &&
+      "sed -i 's/<GCS_STATIC_STORAGE>/${_GCS_STATIC_STORAGE}/g' app.yaml" &&
+      "sed -i 's/<SQL_PASSWORDE>/${_SQL_PASSWORD}/g' app.yaml" &&
+      "sed -i 's/<USPS_USER_ID>/${_USPS_USER_ID}/g' app.yaml" &&
+      "sed -i 's/<SQL_UNIX_HOSTNAME>/${_SQL_UNIX_HOSTNAME}/g' app.yaml" &&
+      "gcloud app deploy"
