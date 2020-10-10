@@ -3,7 +3,7 @@ steps:
   entrypoint: 'bash'
   args: 
     - '-c'
-    - |- 
+    - |-  
       sed -i 's/<SQL_USERNAME>/${_SQL_USERNAME}/g' app.yaml &&
       sed -i 's/<SQL_PASSWORD>/${_SQL_PASSWORD}/g' app.yaml &&
       sed -i 's/<SQL_PORT>/${_SQL_PORT}/g' app.yaml &&
