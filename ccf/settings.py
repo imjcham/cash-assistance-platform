@@ -35,10 +35,7 @@ if not DEBUG:
 #   ETC. - Combination of form app and staff portal for local development
 APP_TYPE = os.environ.get('APP_TYPE', 'LOCAL')
 
-ALLOWED_HOSTS = [
-    '127.0.0.1',
-    'localhost',
-]
+ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     # CCF
@@ -122,15 +119,15 @@ WSGI_APPLICATION = 'ccf.wsgi.application'
 #
 # If in glinux (google laptop), switch user to postgres for psql with:
 # sudo -u postgres psql postgres
-if os.environ.get('RDS_HOSTNAME'):  # RDS deployment
+if os.environ.get('GAE_INSTANCE'):  # RDS deployment
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': os.environ['RDS_DB_NAME'],
-            'USER': os.environ['RDS_USERNAME'],
-            'PASSWORD': os.environ['RDS_PASSWORD'],
-            'HOST': os.environ['RDS_HOSTNAME'],
-            'PORT': os.environ['RDS_PORT'],
+            'NAME': os.environ['SQL_DB_NAME'],
+            'USER': os.environ['SQL_USERNAME'],
+            'PASSWORD': os.environ['SQL_PASSWORD'],
+            'HOST': os.environ['SQL_UNIX_HOSTNAME'],
+            'PORT': os.environ['SQL_PORT'],
         },
     }
 else:  # local deployment
@@ -186,10 +183,8 @@ LOCALE_PATHS = (
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = os.environ['GCS_STATIC_STORAGE']
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-if not DEBUG:
-    STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 
 TESTING = len(sys.argv) > 1 and sys.argv[1] == 'test'
 
@@ -210,50 +205,6 @@ SITE_APPS = [
 # for django.contrib.sites
 SITE_ID = 1
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'formatters': {
-        'verbose': {
-            'format': ('[{asctime}] {levelname} {module}.{funcName} [{message}]'),
-            'style': '{',
-        },
-        'simple': {
-            'format': '[{asctime}] {levelname} {message}',
-            'style': '{',
-        },
-    },
-    'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
-            'formatter': 'verbose',
-        },
-        'eblogfile': {
-            'class': 'logging.FileHandler',
-            'formatter': 'verbose',
-            'filename': '/var/app/log/ccf.log',
-            'level': 'DEBUG'
-        },
-        'info': {
-            'class': 'logging.FileHandler',
-            'formatter': 'simple',
-            'filename': '/var/app/log/info.log',
-            'level': 'INFO',
-        }
-    },
-    'loggers': {
-        'app_ccf': {
-            'handlers': ['console', 'eblogfile', 'info', ],
-            # 'handlers': ['console',],
-            'level': 'DEBUG',
-        },
-        'staff': {
-            'handlers': ['console', 'eblogfile', 'info', ],
-            # 'handlers': ['console',],
-            'level': 'DEBUG',
-        },
-    },
-}
 
 # Path to store private files
 UPLOAD_ROOT = 'private/'
