@@ -14,4 +14,6 @@ steps:
       sed -i "s|<SQL_UNIX_HOSTNAME>|${_SQL_UNIX_HOSTNAME}|g" app.yaml
       sed -i "s|<GCS_STATIC_STORAGE>|${_GCS_STATIC_STORAGE}|g" app.yaml
       gcloud app deploy
+  timeout: 500s
+
 
