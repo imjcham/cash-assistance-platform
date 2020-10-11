@@ -13,4 +13,4 @@ steps:
 #      sed -i 's/<SQL_PASSWORDE>/${_SQL_PASSWORD}/g' app.yaml
 #      sed -i 's/<USPS_USER_ID>/${_USPS_USER_ID}/g' app.yaml
 #      sed -i 's/<SQL_UNIX_HOSTNAME>/${_SQL_UNIX_HOSTNAME}/g' app.yaml
-      gcloud app deploy
+#      gcloud app deploy
